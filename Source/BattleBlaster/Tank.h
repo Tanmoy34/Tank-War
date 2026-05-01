@@ -4,13 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "BasePawn.h"
-#include "Camera/CameraComponent.h"
-#include "GameFramework/SpringArmComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "InputAction.h"
+#include "InputActionValue.h"
+#include "EnhancedInputComponent.h"
 #include "Tank.generated.h"
 
-/**
- * 
- */
+//Forworad Declare
+
+class UInputMappingContext;
+class UCameraComponent;
+class USpringArmComponent;
+
+
+
 UCLASS()
 class BATTLEBLASTER_API ATank : public ABasePawn
 {
@@ -35,10 +42,33 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-
+	//Component
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArmComp;
 
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* CameraComp;
+
+	//Input
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
+	UInputMappingContext* DefaultMappingContext;
+	
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
+	UInputAction * MoveAction;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
+	UInputAction * TurnAction;
+
+	void MoveInput(const FInputActionValue& Value);
+
+	void TurnInput(const FInputActionValue& Value);
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
+	float Speed = 300.0f;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
+	float TurnRate = 50.0f;
+	
+	
 };
