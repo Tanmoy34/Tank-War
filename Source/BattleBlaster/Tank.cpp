@@ -51,6 +51,16 @@ void ATank::BeginPlay()
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	if(PlayerController)
+	{
+		FHitResult HitResult;
+		PlayerController->GetHitResultUnderCursor(ECC_Visibility,false,HitResult);
+		FVector ImpactPosition = HitResult.ImpactPoint;
+		DrawDebugSphere(GetWorld(),ImpactPosition,20,20,FColor::Red);
+	}
+	
 	
 }
 
