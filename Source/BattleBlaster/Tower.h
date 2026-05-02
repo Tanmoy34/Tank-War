@@ -3,19 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/Pawn.h"
-#include "Components/CapsuleComponent.h"
-#include "BasePawn.generated.h"
+#include "BasePawn.h"
+#include "Tank.h"
+#include "Tower.generated.h"
 
+/**
+ * 
+ */
 UCLASS()
-class BATTLEBLASTER_API ABasePawn : public APawn
+class BATTLEBLASTER_API ATower : public ABasePawn
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
-	ABasePawn();
+	ATower();
 
 protected:
 	// Called when the game starts or when spawned
@@ -32,12 +34,5 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(VisibleAnywhere)
-	UCapsuleComponent* Capsulecomp;
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* TurretMesh;
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* BaseMash;
-
-	void RotateTurret(FVector LookATTarget);
+	ATank* Tank;
 };

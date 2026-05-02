@@ -39,3 +39,15 @@ void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+void ABasePawn::RotateTurret(FVector LookATTarget)
+{
+	FVector VectorToTarget =  LookATTarget - TurretMesh->GetComponentLocation();
+	
+
+	FRotator LookAtRotation = FRotator(0, VectorToTarget.Rotation().Yaw, 0);
+
+
+	FRotator InterpolatedRotation = FMath::RInterpTo(TurretMesh->GetComponentRotation(),LookAtRotation,GetWorld()->GetDeltaSeconds(),10.f);
+	TurretMesh->SetWorldRotation(InterpolatedRotation);
+}
+
