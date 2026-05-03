@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Projectile.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Components/CapsuleComponent.h"
@@ -39,5 +40,15 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* BaseMash;
 
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* ProjectileSpawnPoint;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Projectiles")
+	TSubclassOf<AProjectile> ProjectileClass;
+
 	void RotateTurret(FVector LookATTarget);
+
+	void Fire();
+
+	
 };

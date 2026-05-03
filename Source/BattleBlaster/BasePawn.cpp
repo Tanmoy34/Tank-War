@@ -3,6 +3,8 @@
 
 #include "BasePawn.h"
 
+
+
 // Sets default values
 ABasePawn::ABasePawn()
 {
@@ -15,6 +17,8 @@ ABasePawn::ABasePawn()
 	BaseMash->SetupAttachment(Capsulecomp);
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TurretMesh"));
 	TurretMesh->SetupAttachment(BaseMash);
+	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("ProjectileSpawnPoint"));
+	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 
 }
 
@@ -49,5 +53,13 @@ void ABasePawn::RotateTurret(FVector LookATTarget)
 
 	FRotator InterpolatedRotation = FMath::RInterpTo(TurretMesh->GetComponentRotation(),LookAtRotation,GetWorld()->GetDeltaSeconds(),10.f);
 	TurretMesh->SetWorldRotation(InterpolatedRotation);
+}
+
+void ABasePawn::Fire()
+{
+	FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
+	FRotator SpawnRotation =  ProjectileSpawnPoint->GetComponentRotation();
+	//DrawDebugSphere(GetWorld(), SpawnLocation, 20, 20, FColor::Green, false,3.0f);
+	GetWorld()->SpawnActor<AProjectile>(ProjectileClass,SpawnLocation,SpawnRotation);
 }
 

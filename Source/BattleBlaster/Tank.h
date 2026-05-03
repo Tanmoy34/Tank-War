@@ -60,6 +60,9 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
 	UInputAction * TurnAction;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
+	UInputAction* FireAction;
+	
 	void MoveInput(const FInputActionValue& Value);
 
 	void TurnInput(const FInputActionValue& Value);
@@ -69,6 +72,8 @@ public:
 	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
 	float TurnRate = 50.0f;
+
+
 	
 	
 };

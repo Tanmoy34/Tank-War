@@ -35,4 +35,16 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	ATank* Tank;
+
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="FireRange")
+	float FireRange = 600.0f;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="FireRange")
+	float FireRate = 2.0f;
+	
+	void CheckFireCondition();
+
+	bool InFireRange();
+	
 };

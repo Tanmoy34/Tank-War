@@ -22,8 +22,22 @@ void ABattleBlasterGameMode::BeginPlay()
 		Tank = Cast<ATank>(PlayerPawn);
 	}
 	
+	int32 LoopIndex = 0;
+	while (LoopIndex < TowerCount )
+	{
+		AActor* TowerActor =  Towers[LoopIndex];
+		LoopIndex++;
+		if (TowerActor)
+		{
+			ATower* Tower = Cast<ATower>(TowerActor);
+			if (Tower && Tank)
+			{
+				Tower->Tank = Tank;
+			}
+		}
+		
+	}
 }
-
 
 
 
