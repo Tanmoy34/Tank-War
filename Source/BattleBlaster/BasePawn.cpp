@@ -60,6 +60,16 @@ void ABasePawn::Fire()
 	FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
 	FRotator SpawnRotation =  ProjectileSpawnPoint->GetComponentRotation();
 	//DrawDebugSphere(GetWorld(), SpawnLocation, 20, 20, FColor::Green, false,3.0f);
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass,SpawnLocation,SpawnRotation);
+	AProjectile* Projectile =  GetWorld()->SpawnActor<AProjectile>(ProjectileClass,SpawnLocation,SpawnRotation);
+	if (Projectile)
+	{
+		Projectile->SetOwner(this);
+		AActor* ProjectileOwner = Projectile->GetOwner();
+		if (ProjectileOwner)
+		{
+			
+			UE_LOG(LogTemp,Display,TEXT("Projectile Owner: %s"),*ProjectileOwner->GetActorNameOrLabel());
+		}
+	}
 }
 
