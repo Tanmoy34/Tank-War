@@ -73,7 +73,7 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
 	float TurnRate = 50.0f;
 
-
+	void HandleDestruction();
 	
 	
 };

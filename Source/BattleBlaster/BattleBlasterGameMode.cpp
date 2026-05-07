@@ -46,3 +46,29 @@ void ABattleBlasterGameMode::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 }
+
+void ABattleBlasterGameMode::ActorDied(AActor* DeadActor)
+{
+	if (DeadActor == Tank)
+	{
+		//Player Died
+
+		Tank->HandleDestruction();
+	}
+	else
+	{
+		//ATower Died
+		ATower* DeadTower = Cast<ATower>(DeadActor);
+		if (DeadTower)
+		{
+			DeadTower->HandleDestruction();
+			TowerCount--;
+			
+			if (TowerCount == 0)
+			{
+				UE_LOG(LogTemp,Display,TEXT("You Win"));
+			}
+			
+		}
+	}
+}

@@ -64,12 +64,13 @@ void ABasePawn::Fire()
 	if (Projectile)
 	{
 		Projectile->SetOwner(this);
-		AActor* ProjectileOwner = Projectile->GetOwner();
-		if (ProjectileOwner)
-		{
-			
-			UE_LOG(LogTemp,Display,TEXT("Projectile Owner: %s"),*ProjectileOwner->GetActorNameOrLabel());
-		}
+	
+		
 	}
+}
+
+void ABasePawn::HandleDestruction()
+{
+	UE_LOG(LogTemp,Display,TEXT("ABasePawn_HandleDestruction"));
 }
 
