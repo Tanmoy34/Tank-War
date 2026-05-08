@@ -37,6 +37,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float GameOverTimer = 3.0f;
 
+	bool IsGameOver = false;
+	bool IsVictory = false;
+	
 	void ActorDied(AActor* DeadActor);
 
 	void OnGameOverTimerTimeout();

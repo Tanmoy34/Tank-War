@@ -49,8 +49,8 @@ void ABattleBlasterGameMode::Tick(float DeltaTime)
 
 void ABattleBlasterGameMode::ActorDied(AActor* DeadActor)
 {
-	bool IsGameOver = false;
-	bool IsVictory = false;
+	
+	
 	if (DeadActor == Tank)
 	{
 		//Player Died
@@ -87,8 +87,19 @@ void ABattleBlasterGameMode::ActorDied(AActor* DeadActor)
 
 void ABattleBlasterGameMode::OnGameOverTimerTimeout()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Game Restarted"));
-
 	FString CurrentLevelName =  UGameplayStatics::GetCurrentLevelName(GetWorld());
-	UGameplayStatics::OpenLevel(GetWorld(),*CurrentLevelName);
+
+	 
+	if (IsVictory)
+	{
+		
+		
+		
+	}
+	else
+	{
+		UGameplayStatics::OpenLevel(GetWorld(),*CurrentLevelName);		
+	}
+	
+
 }
