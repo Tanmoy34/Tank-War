@@ -34,7 +34,10 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	int32 TowerCount;
 
+	UPROPERTY(EditAnywhere)
+	float GameOverTimer = 3.0f;
+
 	void ActorDied(AActor* DeadActor);
 
-
+	void OnGameOverTimerTimeout();
 };
