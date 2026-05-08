@@ -62,6 +62,8 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
 	UInputAction* FireAction;
+
+	APlayerController* PlayerController;
 	
 	void MoveInput(const FInputActionValue& Value);
 
@@ -73,7 +75,10 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Input")
 	float TurnRate = 50.0f;
 
+	bool IsAlive = true;
 	void HandleDestruction();
+	
+	void SetPlayerEnable(bool Enabled);
 	
 	
 };

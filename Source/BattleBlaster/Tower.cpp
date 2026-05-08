@@ -36,7 +36,7 @@ void ATower::SetupPlayerInputComponent(class UInputComponent* PlayerInputCompone
 
 void ATower::CheckFireCondition()
 {
-	if (InFireRange())
+	if ((Tank->IsAlive == true) &&Tank &&InFireRange())
 	{
 		Fire();
 	}
@@ -60,5 +60,7 @@ void ATower::HandleDestruction()
 	Super::HandleDestruction();
 	Destroy();
 }
+
+
 
 

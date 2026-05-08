@@ -54,6 +54,7 @@ void ABattleBlasterGameMode::ActorDied(AActor* DeadActor)
 		//Player Died
 
 		Tank->HandleDestruction();
+		
 	}
 	else
 	{

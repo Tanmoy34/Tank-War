@@ -48,5 +48,7 @@ public:
 	bool InFireRange();
 
 	void HandleDestruction();
+
+	
 	
 };
