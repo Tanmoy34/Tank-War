@@ -55,6 +55,9 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	USoundBase* DeathSound;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	TSubclassOf<UCameraShakeBase> DeathCameraShakeClass;
+
 	void RotateTurret(FVector LookATTarget);
 
 	void Fire();

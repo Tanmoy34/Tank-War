@@ -57,9 +57,18 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 			if (Hitparticles)
 			{
 				UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(),Hitparticles,GetActorLocation(),GetActorRotation());
-				if (HitSound)
+				
+			}
+			if (HitSound)
+			{
+				UGameplayStatics::PlaySoundAtLocation(GetWorld(),HitSound,GetActorLocation());
+			}
+			if (HitCameraShakeClass)
+			{
+				APlayerController* PlayerController =UGameplayStatics::GetPlayerController(GetWorld(),0);
+				if (PlayerController)
 				{
-					UGameplayStatics::PlaySoundAtLocation(GetWorld(),HitSound,GetActorLocation());
+					PlayerController->ClientStartCameraShake(HitCameraShakeClass);
 				}
 			}
 		}

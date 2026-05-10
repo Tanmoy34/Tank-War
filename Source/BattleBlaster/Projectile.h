@@ -45,6 +45,11 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Sound")
 	USoundBase* LaunchSound;
 
+	UPROPERTY(EditAnywhere,Category="ChameraShake")
+	TSubclassOf<UCameraShakeBase> HitCameraShakeClass;
+	
+	
+
 	UPROPERTY(EditAnywhere)
 	float Damage = 25.0f;
 
