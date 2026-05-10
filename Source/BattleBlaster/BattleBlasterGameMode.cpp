@@ -2,6 +2,10 @@
 
 
 #include "BattleBlasterGameMode.h"
+
+
+
+
 #include "BattleBlasterGameInstance.h"
 #include "Tower.h"
 #include "Kismet/GameplayStatics.h"
@@ -37,6 +41,44 @@ void ABattleBlasterGameMode::BeginPlay()
 		}
 		
 	}
+	APlayerController* PlayerController =   UGameplayStatics::GetPlayerController(GetWorld(),0);
+	if (PlayerController)
+	{
+		ScreenMassageWidget = CreateWidget<UScreenMassage>(PlayerController,ScreenMassageClass);
+		if (ScreenMassageWidget)
+		{
+			ScreenMassageWidget->AddToPlayerScreen();
+			ScreenMassageWidget->SetMessageText(TEXT("Hello!"));
+		}
+	}
+	
+	CountdownSeconds = CountdownDelay;
+	GetWorldTimerManager().SetTimer(CountdownTimerHandle,this,&ABattleBlasterGameMode::OnCountdownTimerTimeout,1.0f,true);
+}
+void ABattleBlasterGameMode::OnCountdownTimerTimeout()
+{
+	
+	CountdownSeconds-=1;
+
+	if (CountdownSeconds>0)
+	{
+		
+		ScreenMassageWidget->SetMessageText(FString::FromInt(CountdownSeconds));
+	}
+	else if (CountdownSeconds==0)
+	{
+		
+		Tank->SetPlayerEnable(true);
+		ScreenMassageWidget->SetMessageText(TEXT("Go!"));
+	}
+	else
+	{
+		//Coundwon below zero
+		GetWorldTimerManager().ClearTimer(CountdownTimerHandle);
+		ScreenMassageWidget->SetVisibility(ESlateVisibility::Hidden);
+	}
+	
+	
 }
 
 
@@ -79,7 +121,8 @@ void ABattleBlasterGameMode::ActorDied(AActor* DeadActor)
 	if (IsGameOver)
 	{
 		FString GameOverString = IsVictory ? "Victory" : "Defeated";
-		UE_LOG(LogTemp, Warning, TEXT("Game Mode: %s"),*GameOverString);
+		ScreenMassageWidget->SetMessageText(GameOverString);
+		ScreenMassageWidget->SetVisibility(ESlateVisibility::Visible);
 		FTimerHandle GameOverTimerHandle;
 		GetWorldTimerManager().SetTimer(GameOverTimerHandle,this,&ABattleBlasterGameMode::OnGameOverTimerTimeout,GameOverTimer,false);
 	}
@@ -111,3 +154,5 @@ void ABattleBlasterGameMode::OnGameOverTimerTimeout()
 	
 
 }
+
+
