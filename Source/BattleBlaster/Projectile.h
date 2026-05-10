@@ -39,6 +39,12 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UNiagaraSystem* Hitparticles;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Sound")
+	USoundBase* HitSound;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Sound")
+	USoundBase* LaunchSound;
+
 	UPROPERTY(EditAnywhere)
 	float Damage = 25.0f;
 

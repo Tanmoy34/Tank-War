@@ -52,6 +52,9 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UNiagaraSystem* DeathParticle;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	USoundBase* DeathSound;
+
 	void RotateTurret(FVector LookATTarget);
 
 	void Fire();

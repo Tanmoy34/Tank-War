@@ -29,6 +29,12 @@ void AProjectile::BeginPlay()
 	Super::BeginPlay();
 
 	ProjectileMesh->OnComponentHit.AddDynamic(this,&AProjectile::OnHit);
+
+	if (LaunchSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), LaunchSound, GetActorLocation());		
+	}
+	
 	
 }
 
@@ -51,6 +57,10 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 			if (Hitparticles)
 			{
 				UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(),Hitparticles,GetActorLocation(),GetActorRotation());
+				if (HitSound)
+				{
+					UGameplayStatics::PlaySoundAtLocation(GetWorld(),HitSound,GetActorLocation());
+				}
 			}
 		}
 	}
