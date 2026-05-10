@@ -7,6 +7,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Components/CapsuleComponent.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "BasePawn.generated.h"
 
 UCLASS()
@@ -45,6 +47,10 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Projectiles")
 	TSubclassOf<AProjectile> ProjectileClass;
+	
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UNiagaraSystem* DeathParticle;
 
 	void RotateTurret(FVector LookATTarget);
 

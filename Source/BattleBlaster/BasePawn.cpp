@@ -71,6 +71,10 @@ void ABasePawn::Fire()
 
 void ABasePawn::HandleDestruction()
 {
-	UE_LOG(LogTemp,Display,TEXT("ABasePawn_HandleDestruction"));
+	//UE_LOG(LogTemp,Display,TEXT("ABasePawn_HandleDestruction"));
+	if (DeathParticle)
+	{
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(),DeathParticle,GetActorLocation(),GetActorRotation());
+	}
 }
 
